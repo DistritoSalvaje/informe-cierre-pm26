@@ -385,6 +385,23 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <div class="panel"><p class="panel-t">Venta identificada</p><p class="panel-s">Millones de COP por semana</p><div class="chart-wrap" id="wkSales"></div></div>
         </div>
 
+
+        <h3 class="col">El otro ángulo: intensidad por partido</h3>
+        <div class="col">
+          <p>Los tres gráficos de arriba miden volumen absoluto, y el volumen absoluto sigue al calendario. Para saber si además hubo desenganche real hay que <strong>dividir por la cantidad de partidos de cada semana</strong>. Ahí la lectura se da vuelta.</p>
+        </div>
+
+        <div class="grid g3" style="margin:1.2rem 0 1.4rem">
+          <div class="panel"><p class="panel-t">Tickets por partido</p><p class="panel-s">Tickets aprobados dividido partidos de esa semana</p><div class="chart-wrap" id="wkTkMatch"></div></div>
+          <div class="panel"><p class="panel-t">Compradores por partido</p><p class="panel-s">Personas distintas que compraron, por partido</p><div class="chart-wrap" id="wkUsMatch"></div></div>
+          <div class="panel"><p class="panel-t">Predicciones por partido</p><p class="panel-s">Pronósticos recibidos por cada partido jugado</p><div class="chart-wrap" id="wkPrMatch"></div></div>
+        </div>
+
+        <div class="col">
+          <p><strong>Cada partido valía cada vez más.</strong> Un partido de la primera semana movía 1,8 tickets; uno de la última, 22,3. Doce veces más. Los compradores por partido pasaron de 0,8 a 4,3 y las predicciones por partido treparon de 7,9 a un pico de 69,7 en la semana de cuartos de final. El público no se aburrió del mecanismo: se le acabaron las fechas.</p>
+          <p>Con un matiz que conviene decir. Lo que subió es <strong>cuánto hace cada uno de los que quedan</strong>, no cuántos quedan. Las personas distintas se fueron achicando en paralelo: de 153 pronosticadores en la semana del 22 de junio a 57 en la última, y de 50 compradores a 17. Convivieron dos movimientos opuestos, un núcleo que se entusiasmaba más a medida que se acercaba la final y una periferia que se iba retirando.</p>
+        </div>
+
         <h3 class="col">El hallazgo</h3>
         <div class="col">
           <p>Los usuarios que jugaron la polla compraron <strong>4,2 veces más seguido</strong> y gastaron <strong>3,2 veces más</strong> que los que se registraron y nunca predijeron. Y los que ganaron al menos un premio gastaron <strong>3,7 veces más</strong> que los que nunca ganaron.</p>
@@ -792,6 +809,23 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     color: "var(--s4)", label: "Venta identificada por semana",
     tick: v => v.toFixed(1), fmt: v => "$" + v.toFixed(2) + " M"
   });
+
+
+  const WKM = [
+    { l: "8-jun", p: 11, t: 1.8, u: 0.82, pr: 7.9 },
+    { l: "15-jun", p: 28, t: 3.3, u: 1.07, pr: 24.8 },
+    { l: "22-jun", p: 34, t: 3.5, u: 1.47, pr: 56.8 },
+    { l: "29-jun", p: 18, t: 7.4, u: 2.89, pr: 63.8 },
+    { l: "6-jul", p: 9, t: 14.4, u: 3.22, pr: 69.7 },
+    { l: "13-jul", p: 4, t: 22.3, u: 4.25, pr: 37.5 }
+  ];
+  const perMatch = (id, key, color, dec) => line($("#" + id), WKM.map(w => ({ l: w.l, v: w[key] })), {
+    color: color, label: "Intensidad por partido",
+    tick: v => v.toFixed(dec), fmt: v => v.toFixed(dec) + " por partido"
+  });
+  perMatch("wkTkMatch", "t", "var(--s1)", 1);
+  perMatch("wkUsMatch", "u", "var(--s3)", 1);
+  perMatch("wkPrMatch", "pr", "var(--s4)", 0);
 
   bars($("#barLift"), [
     { l: "Juega la polla", v: 104882, c: "var(--s1)", t: "107 usuarios" },
