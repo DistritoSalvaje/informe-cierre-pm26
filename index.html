@@ -584,27 +584,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         </div>
       </section>
 
-      <!-- ================= INVENTARIO ================= -->
-      <section class="step" id="inventario">
-        <div class="col">
-          <div class="step-head"><div class="step-no">4</div><div><h2>La plataforma que quedó operando</h2></div></div>
-          <p>La campaña terminó, pero la aplicación no se desarma: queda construida y lista para volver a usarse. Son <strong><span id="nInv">120</span> funcionalidades</strong> en nueve bloques, todas probadas con clientes reales durante la operación.</p>
-          <p>La lista está para que quede claro qué se construyó. Se puede filtrar por bloque o buscar por palabra.</p>
-        </div>
-
-        <div class="filters" style="margin-top:1.4rem">
-          <span class="chip-lb">Bloque</span>
-          <span id="invChips" style="display:contents"></span>
-          <input class="search" id="invSearch" type="search" placeholder="buscar: ocr, cupón, push…" aria-label="Buscar funcionalidad">
-          <span class="count" id="invCount"></span>
-        </div>
-        <div class="feat" id="invList"></div>
-      </section>
 
       <!-- ================= RECOMENDACIONES ================= -->
       <section class="step" id="recomendaciones">
         <div class="col">
-          <div class="step-head"><div class="step-no">5</div><div><h2>Qué haría distinto en una próxima edición</h2></div></div>
+          <div class="step-head"><div class="step-no">4</div><div><h2>Qué haría distinto en una próxima edición</h2></div></div>
           <p>Diez recomendaciones, cada una apoyada en un número de esta campaña. Están ordenadas por el impacto que esperaríamos de cada una.</p>
         </div>
 
@@ -685,8 +669,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     ["accion", "01", "La acción"],
     ["caso", "02", "Los resultados"],
     ["fraude", "03", "El fraude detectado"],
-    ["inventario", "04", "La plataforma"],
-    ["recomendaciones", "05", "Próxima edición"]
+    ["recomendaciones", "04", "Próxima edición"]
   ];
   const jump = $("#jump");
   jump.appendChild(el("option", null, "Ir al paso…"));
@@ -961,180 +944,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       "<td class='num'>" + t + "</td><td class='num'>" + u + "</td>" +
       "<td class='num'>" + cop(prom) + "</td><td class='num'>" + cop(venta) + "</td>"));
   });
-})();
-</script>
-
-<script>
-
-(function () {
-  "use strict";
-  const $ = (s, r) => (r || document).querySelector(s);
-  const el = (t, c, h) => { const n = document.createElement(t); if (c) n.className = c; if (h != null) n.innerHTML = h; return n; };
-
-  /* ================= INVENTARIO ================= */
-  const BLOCKS = {
-    A: "Identidad y cuenta", B: "Multi-marca", C: "Consumo y tickets",
-    D: "Predicciones deportivas", E: "Ranking", F: "Premios y cupones",
-    G: "Notificaciones", H: "Back-office", I: "Plataforma"
-  };
-  const INV = [
-    ["A1","Registro con email y contraseña","Autenticación gestionada, con verificación por email."],
-    ["A2","Login, cierre de sesión y recuperación","Flujo completo de restablecimiento por token."],
-    ["A3","Onboarding en cuatro pasos","Placas explicativas de mecánica y premios antes de empezar."],
-    ["A4","Aceptación de términos con versión","Se guarda qué versión aceptó cada persona y cuándo."],
-    ["A5","Nombre de usuario único","Sin distinguir mayúsculas, con validación en vivo, chequeo de disponibilidad y largo mínimo."],
-    ["A6","Perfil","Datos personales, teléfono normalizado por país, zona horaria del dispositivo."],
-    ["A7","Eliminación de cuenta","Autogestionada desde el perfil."],
-    ["A8","Roles y permisos","Separación de usuario y administración, verificada en el servidor."],
-    ["A9","Seguridad de datos","Aislamiento por fila en las 43 tablas, permisos revisados y endurecidos."],
-    ["A10","Completar perfil después del alta","Ruta dedicada para registros incompletos."],
-    ["B1","Dos marcas sobre un mismo código","Distrito Salvaje y Sr. Buñuelo, en producción simultánea."],
-    ["B2","Resolución de marca por dominio","El dominio de entrada define la marca de toda la sesión."],
-    ["B3","Identidad visual por marca","Colores, tipografías propias, logos e íconos."],
-    ["B4","App instalable por marca","Cada dominio se instala en el teléfono con su propia identidad."],
-    ["B5","Emails por marca","Remitente y plantillas con la identidad de cada una."],
-    ["B6","Legales por marca","Términos y privacidad con operador, NIT, jurisdicción y contacto propios."],
-    ["B7","Marca del usuario","Queda asociada al alta y filtra los premios que ve."],
-    ["B8","Marca por local","Un local puede pertenecer a una marca o a las dos."],
-    ["B9","Clusters de locales","Grupos nombrados reutilizables, con membresía mixta entre marcas."],
-    ["B10","Premios con marca objetivo","Cada condición apunta a una marca o a todas."],
-    ["C1","Carga de foto del ticket","Compresión en el teléfono, formatos JPEG, PNG y HEIC, normalización en el servidor."],
-    ["C2","Lectura del ticket con IA","Extrae NIT del comercio, monto, fecha, hora y tipo de documento."],
-    ["C3","Miniaturas","Genera la versión reducida para que la cola de revisión abra rápido."],
-    ["C4","Verificación del NIT","Valida el dígito de verificación y tolera errores de lectura con coincidencia difusa."],
-    ["C5","Resolución del local","Cruza NIT, nombre, dirección y teléfono contra la huella registrada de cada local."],
-    ["C6","Reglas de fecha","Ventana del programa más antigüedad máxima del ticket, ambas configurables."],
-    ["C7","Rechazo de precuenta","Detecta el documento no fiscal antes de dar puntos."],
-    ["C8","Control de legibilidad","Pide una foto nueva con instrucciones cuando no se lee."],
-    ["C9","Duplicado exacto","Huella del ticket que impide cargar dos veces el mismo."],
-    ["C10","Duplicado difuso","Detecta reimpresiones y fotos alteradas del mismo consumo."],
-    ["C11","Banderas de fraude","Motivos tipificados, con el texto que ve el usuario derivado de cada uno."],
-    ["C12","Agrupación de recibos","Junta los intentos del mismo recibo, clave en food halls con varias cajas."],
-    ["C13","Evaluación en sombra","Prueba reglas nuevas contra el tráfico real sin afectar al usuario."],
-    ["C14","Tope diario configurable","Editable desde administración, con reserva atómica que evita la condición de carrera."],
-    ["C15","Tope absoluto de cargas","Protege el costo de lectura con IA frente al abuso."],
-    ["C16","Control de frecuencia de subida","Reservas que se liberan si el veredicto no termina en aprobado."],
-    ["C17","Estados del ticket","Aprobado, rechazado, a corregir y en revisión manual."],
-    ["C18","Un solo mensaje por resultado","El mismo texto en la ventana, en el detalle y en la notificación."],
-    ["C19","Resultado inmediato","Ventana con puntos otorgados y motivo, apenas termina el proceso."],
-    ["C20","Cupo de lectura con IA","Presupuesto diario con degradación controlada cuando se agota."],
-    ["C21","Resiliencia de la lectura","Reintentos acotados, manejo de demoras, recuperación de tickets trabados."],
-    ["C22","Puntos por consumo","Otorgamiento configurable que dispara el motor de premios."],
-    ["C23","Monto mínimo de primera compra","Regla especial por marca, con panel propio de seguimiento."],
-    ["C24","Purga de imágenes","Borra automáticamente las imágenes vencidas del almacenamiento."],
-    ["C25","Historial del usuario","Listado, detalle, imagen, estado y puntos de cada ticket."],
-    ["D1","Fixture completo","104 partidos sincronizados desde el proveedor deportivo."],
-    ["D2","Sincronización de resultados","Automática, con reconciliación y vigilante que alerta si se cae."],
-    ["D3","Fases del torneo","Siete fases, incluidos dieciseisavos, tercer puesto y final."],
-    ["D4","Llave de eliminación","Topología, propagación automática de ganadores y pantalla dedicada."],
-    ["D5","Nueve tipos de pronóstico","Resultado exacto, ganador con diferencia, ganador, goles de un equipo, goleador, figura, rojas, amarillas y más faltas."],
-    ["D6","Puntajes editables","Valor, grupo, orden y activación de cada tipo, sin tocar código."],
-    ["D7","Escalera excluyente","Un acierto de mayor jerarquía absorbe a los menores."],
-    ["D8","Cierre automático","Los pronósticos se bloquean al arrancar el partido."],
-    ["D9","Recordatorios","Aviso antes del cierre, con registro de cada corrida."],
-    ["D10","Recálculo de puntajes","Corrida automática más corrección dentro de las 72 horas previstas."],
-    ["D11","Estados por fecha","Separación entre abiertos, cerrados y jugados."],
-    ["D12","Mensajes de resultado","Texto propio para cada tipo de acierto y de error."],
-    ["D13","Estadísticas del partido","Estructuradas desde el proveedor, con carga manual de respaldo."],
-    ["D14","Historial de equipos","Antecedentes mostrados en el momento de pronosticar."],
-    ["D15","Nombres de selecciones traducidos","En los dos idiomas de la app."],
-    ["D16","Integridad del puntaje","Detección de desvíos, reparación automática, alertas y registro."],
-    ["E1","Ranking global","Por puntos totales: pronósticos más consumo."],
-    ["E2","Desempate determinístico","Quien alcanzó el puntaje primero; luego, quien pronosticó antes."],
-    ["E3","Paginación con salto","Lleva automáticamente a la página donde está cada usuario."],
-    ["E4","Reinicio de saldos por etapa","Todos a cero al mismo tiempo al empezar la eliminación."],
-    ["E5","Verificación de totales","Recálculo con corte y chequeo de consistencia."],
-    ["F1","Catálogo de premios","Listado con imágenes, detalle y navegación optimizada."],
-    ["F2","Plantillas de cupón","Tipo, valor, días de validez, descripción e imagen."],
-    ["F3","Motor de condiciones","Disparador, momento de evaluación, tipo y límite de ganadores, vigencia y marca."],
-    ["F4","Cuatro disparadores","Consumo durante un partido, consumo por monto mínimo, combinación de ambos y resultado deportivo."],
-    ["F5","Evaluación inmediata o diferida","Al aprobar el ticket o al terminar el partido."],
-    ["F6","Todos los que califican o sorteo","Con límite configurable de ganadores."],
-    ["F7","Sorteos auditables","Foto fija de participantes, ganadores y quién lo ejecutó."],
-    ["F8","Alcance por local y por cluster","Un premio vale donde se decida que valga."],
-    ["F9","Emisión automática","El cupón se instancia solo para quien califica."],
-    ["F10","Activación con cuenta regresiva","El cupón vive unos minutos desde que se activa: antifraude de canje."],
-    ["F11","Canje con QR","Código generado en la app para mostrar en el local."],
-    ["F12","Vencimiento automático","Corrida diaria que cierra los cupones vencidos."],
-    ["F13","Historial de cupones","Activos, usados y vencidos, por usuario."],
-    ["F14","Premio semanal","Corrida automática con registro de cada ejecución."],
-    ["F15","Asignación manual","Desde administración, con listado de premios asignados."],
-    ["F16","Autoselección por grupo","El alcance se completa solo según el grupo de locales."],
-    ["F17","Aviso de premio ganado","Notificación específica por condición y email para premios mayores."],
-    ["G1","Notificaciones push","Por dispositivo, asociadas a la marca correspondiente."],
-    ["G2","Invitación a instalar la app","Con lógica de reintento y explicación del beneficio."],
-    ["G3","Manejo de dispositivos rotados","Reasigna la suscripción cuando el navegador cambia el identificador."],
-    ["G4","Doce tipos de notificación","Desde ticket validado hasta alertas internas de integridad."],
-    ["G5","Textos editables","El copy de cada tipo se edita desde administración, con revisión."],
-    ["G6","Preferencias por usuario","Cada persona elige qué quiere recibir."],
-    ["G7","Envío masivo con reintentos","Con registro de las que fallan y por qué."],
-    ["G8","Medición de aperturas","6.060 eventos medidos, con panel de enganche por tipo."],
-    ["G9","Diagnóstico de suscripción","Registro de errores por navegador y dispositivo."],
-    ["G10","Emails transaccionales","Bienvenida y premio mayor, con remitente por marca."],
-    ["G11","Envío manual desde administración","Con registro de quién mandó qué."],
-    ["G12","Resumen semanal","Corrida automática con registro de ejecuciones."],
-    ["G13","Alertas al equipo","Los vigilantes de sincronización e integridad avisan por email."],
-    ["H1","Panel de analítica","Usuarios activos, tickets por día, tasa de lectura, puntos por categoría, embudo de cupones y locales top."],
-    ["H2","Exportación","CSV y XLSX con tope de filas configurado."],
-    ["H3","Cola de revisión de tickets","Con imágenes, detalle, aprobación manual y alerta de ventana."],
-    ["H4","Directorio de usuarios","Filtros por marca, estado, cupones, tickets, rangos de puntos, alta y último ingreso."],
-    ["H5","Administración de locales","Alta, edición, clusters, multiselección y marcas."],
-    ["H6","Administración de premios","Catálogo, condiciones, asignados y clusters."],
-    ["H7","Administración de pronósticos","Fases, carga de resultados con filtro y configuración de puntos."],
-    ["H8","Administración de notificaciones","Envío, textos, fallidas y métricas."],
-    ["H9","Panel de operaciones","Cupo de lectura, vigilante de sincronización e integridad."],
-    ["H10","Auditoría","Registro de acciones administrativas."],
-    ["H11","Navegación del back-office","Menú agrupado, enlaces cruzados entre entidades y dos idiomas."],
-    ["H12","Rediseño en curso","Fundaciones del nuevo back-office ya aplicadas."],
-    ["I1","Framework moderno","Next.js 14 con TypeScript y renderizado en servidor."],
-    ["I2","Backend gestionado","Autenticación, base de datos, almacenamiento, funciones y tiempo real."],
-    ["I3","Base de datos","43 tablas con aislamiento por fila y 84 migraciones versionadas."],
-    ["I4","App instalable","Funciona como aplicación nativa desde el navegador."],
-    ["I5","Dos idiomas","Español e inglés, con verificación automática de paridad."],
-    ["I6","Zona horaria por dispositivo","Todo se muestra en la hora local de cada persona."],
-    ["I7","Trece tareas programadas","Sincronización, cierres, recálculos, avisos, premios, purgas y vigilancias."],
-    ["I8","Integración continua","Pruebas unitarias, de punta a punta, tipos, estilo, cobertura, trazabilidad y secretos."],
-    ["I9","Desarrollo dirigido por especificación","Unas noventa especificaciones con 1.580 criterios verificados."],
-    ["I10","Auditoría de rendimiento","Mediciones automatizadas con histórico."],
-    ["I11","Observabilidad","Registros de auditoría, desvíos, alertas y bloqueos de tareas."],
-    ["I12","Legales publicados","Términos y privacidad versionados por marca."]
-  ];
-
-  const invList = $("#invList"), invCount = $("#invCount"), invSearch = $("#invSearch");
-  let invF = "all";
-  const chipsBox = $("#invChips");
-  const mkChip = (box, label, val, cur, onPick) => {
-    const c = el("button", "chip", label);
-    c.type = "button"; c.setAttribute("aria-pressed", String(val === cur));
-    c.addEventListener("click", () => onPick(val));
-    box.appendChild(c); return c;
-  };
-  function renderChips() {
-    chipsBox.innerHTML = "";
-    mkChip(chipsBox, "Todos", "all", invF, v => { invF = v; renderChips(); renderInv(); });
-    Object.keys(BLOCKS).forEach(k => {
-      const n = INV.filter(i => i[0][0] === k).length;
-      mkChip(chipsBox, k + " · " + BLOCKS[k] + " (" + n + ")", k, invF, v => { invF = v; renderChips(); renderInv(); });
-    });
-  }
-  function renderInv() {
-    const q = invSearch.value.trim().toLowerCase();
-    const rows = INV.filter(i =>
-      (invF === "all" || i[0][0] === invF) &&
-      (!q || (i[1] + " " + i[2] + " " + i[0]).toLowerCase().includes(q)));
-    invList.innerHTML = "";
-    rows.forEach(([id, t, d]) => {
-      invList.appendChild(el("div", "feat-item",
-        "<span class='feat-id'>" + id + "</span><span><b class='feat-b'>" + t + "</b><span class='feat-d'>" + d + "</span></span>"));
-    });
-    if (!rows.length) invList.appendChild(el("div", "feat-item", "<span class='feat-id'></span><span class='feat-d'>No hay resultados para esa búsqueda.</span>"));
-    invCount.textContent = rows.length + " de " + INV.length;
-  }
-  invSearch.addEventListener("input", renderInv);
-  renderChips(); renderInv();
-
-  /* conteos reales en el texto */
-  const nInv = document.getElementById("nInv"); if (nInv) nInv.textContent = INV.length;
 })();
 </script>
 </body>
