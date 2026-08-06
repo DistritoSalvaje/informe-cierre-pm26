@@ -391,21 +391,21 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
         <h3 class="col">El otro ángulo: intensidad por partido</h3>
         <div class="col">
-          <p>Los tres gráficos de arriba miden volumen absoluto, y el volumen absoluto sigue al calendario. Para saber si además hubo desenganche real hay que <strong>dividir por la cantidad de partidos de cada semana</strong>. Ahí la lectura se da vuelta.</p>
+          <p>Los tres gráficos de arriba miden volumen absoluto, y el volumen absoluto sigue al calendario. Para saber si además hubo desenganche real hay que <strong>mirar la intensidad</strong>: cuánto movió cada fecha y cuánto compró cada persona. Ahí la lectura se da vuelta.</p>
         </div>
 
 <div class="col">
-          <p class="fn-note" style="font-size:.78rem;margin:-.4rem 0 1.2rem">Los tres son cocientes de semana, no atribuciones por partido: el numerador es la actividad de toda la semana y el divisor, los partidos jugados en ella. Sirven para comparar semanas con distinta cantidad de fechas, no para decir cuánta gente consumió durante cada partido.</p>
+          <p class="fn-note" style="font-size:.78rem;margin:-.4rem 0 1.2rem">El primero es una normalización del calendario, no una atribución: los tickets no quedan ligados a un partido, así que sirve para comparar semanas con distinta cantidad de fechas y nada más. El tercero sí es un promedio real por partido, porque cada pronóstico se hace sobre un partido concreto.</p>
         </div>
 
         <div class="grid g3" style="margin:1.2rem 0 1.4rem">
-          <div class="panel"><p class="panel-t">Tickets por partido</p><p class="panel-s">Tickets aprobados de la semana dividido partidos de esa semana</p><div class="chart-wrap" id="wkTkMatch"></div></div>
-          <div class="panel"><p class="panel-t">Compradores por partido</p><p class="panel-s">Compradores distintos de la semana dividido partidos de esa semana</p><div class="chart-wrap" id="wkUsMatch"></div></div>
-          <div class="panel"><p class="panel-t">Predicciones por partido</p><p class="panel-s">Pronósticos recibidos dividido partidos de esa semana</p><div class="chart-wrap" id="wkPrMatch"></div></div>
+          <div class="panel"><p class="panel-t">Tickets por partido programado</p><p class="panel-s">Normalización del calendario: tickets de la semana dividido partidos de esa semana</p><div class="chart-wrap" id="wkTkMatch"></div></div>
+          <div class="panel"><p class="panel-t">Tickets por comprador activo</p><p class="panel-s">Cuántas veces compró, en promedio, cada persona activa esa semana</p><div class="chart-wrap" id="wkUsMatch"></div></div>
+          <div class="panel"><p class="panel-t">Predicciones por partido</p><p class="panel-s">Promedio real: cada pronóstico corresponde a un partido concreto</p><div class="chart-wrap" id="wkPrMatch"></div></div>
         </div>
 
         <div class="col">
-          <p><strong>Cada partido valía cada vez más.</strong> Un partido de la primera semana movía 1,8 tickets; uno de la última, 22,3. Doce veces más. Los compradores por partido pasaron de 0,8 a 4,3 y las predicciones por partido treparon de 7,9 a un pico de 69,7 en la semana de cuartos de final. El público no se aburrió del mecanismo: se le acabaron las fechas.</p>
+          <p><strong>Cada partido valía cada vez más.</strong> Por cada partido del calendario, la primera semana movió 1,8 tickets y la última 22,3: doce veces más. Cada persona activa pasó de comprar 2,2 veces por semana a 5,2. Y las predicciones por partido treparon de 7,9 a un pico de 69,7 en cuartos de final. El público no se aburrió del mecanismo: se le acabaron las fechas.</p>
           <p>Con un matiz que conviene decir. Lo que subió es <strong>cuánto hace cada uno de los que quedan</strong>, no cuántos quedan. Las personas distintas se fueron achicando en paralelo: de 153 pronosticadores en la semana del 22 de junio a 57 en la última, y de 50 compradores a 17. Convivieron dos movimientos opuestos, un núcleo que se entusiasmaba más a medida que se acercaba la final y una periferia que se iba retirando.</p>
         </div>
 
@@ -472,30 +472,26 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
             <p>Los dos gráficos apuntan al mismo lugar: el circuito se corta en la vuelta. Faltan dos cosas. Una es <strong>mostrar el umbral</strong>, algo tan simple como "te faltan $12.000 para el próximo premio", con la barra calculada sobre el ticket promedio real de ese local. La otra es que <strong>canjear sea fácil</strong>: link corto por WhatsApp y un cajero que pueda escanear el código desde su celular. Son las recomendaciones 1 y 2.</p>
         </div>
 
-        <h3 class="col">Retención por cohorte</h3>
+        <h3 class="col">¿Cuánta gente volvió?</h3>
         <div class="col">
-          <p>Cada fila es una <strong>cohorte</strong>: la gente cuya primera compra registrada cayó en esa semana. Las columnas miden qué porcentaje de ese mismo grupo <strong>volvió a comprar</strong> una, dos y tres semanas después.</p>
-          <p>Conviene aclarar dos cosas antes de leerlo. Cada columna mira <strong>una semana puntual y no acumula</strong>: no dice "seguían activos", dice "compraron esa semana". Por eso la fila del 22-jun sube de 8% a 11%, que es gente que se salteó una semana y volvió. El denominador, en cambio, es siempre la cohorte original, así que las filas se pueden comparar entre sí aunque tengan tamaños distintos.</p>
+          <p>De cada diez personas que compraron por primera vez, <strong>una volvió a comprar la semana siguiente</strong>. Ese es el número real del programa.</p>
         </div>
 
-        <div class="scroller">
-          <table class="heat">
-            <thead><tr><th>Cohorte (1ª compra)</th><th class="num">Usuarios</th><th class="num">De alta frecuencia</th><th class="num">Compras prom.</th><th style="text-align:center">Semana +1</th><th style="text-align:center">Semana +2</th><th style="text-align:center">Semana +3</th></tr></thead>
-            <tbody id="tblCohort"></tbody>
-          </table>
+        <div class="panel" style="margin:1.2rem 0 1.4rem">
+          <p class="panel-t">Volvieron a comprar la semana siguiente</p>
+          <p class="panel-s">Según la semana en que hicieron su primera compra</p>
+          <div class="bars" id="barVuelta"></div>
         </div>
+
         <div class="col">
-          <p>A primera vista parece que el programa se fue apagando: las dos primeras cohortes retienen entre 23% y 44% a tres semanas, y las de fines de junio caen al 8%. Pero <strong>lo que cambió no fue el programa, fue quién entraba</strong>.</p>
-          <p>La columna de alta frecuencia lo deja claro. <strong>Nueve de los diez usuarios con más de once compras están en las dos primeras cohortes</strong>, que además son chiquitas: 9 y 26 personas. Esas cohortes no retuvieron mejor. Estaban formadas casi solo por los entusiastas del arranque, con 18 y 9,1 compras promedio por cabeza. Recién cuando el programa llegó al cliente común, a razón de 37 y 38 compradores nuevos por semana, apareció la retención de verdad.</p>
-          <p>También revisé la explicación más cómoda, que hubiera sido la falta de premios, y no se sostiene. Las cohortes que peor retuvieron, las del 22 y el 29 de junio, entraron justo en el <strong>pico de emisión</strong>: 134 y 119 premios contra 58 la semana anterior. Premios había. No alcanzaron.</p>
-        </div>
+          <p>Las dos primeras semanas parecen mucho mejores, con cuatro de cada diez volviendo, pero es un espejismo: eran semanas chiquitas, de 9 y 26 personas, y ahí adentro estaban <strong>nueve de los diez clientes más intensos de toda la campaña</strong>. Cuando el programa llegó al cliente común, a razón de 37 y 38 compradores nuevos por semana, apareció el uno de cada diez.</p>
+          <p>Y no fue por falta de premios: las dos semanas que peor volvieron fueron justamente las de mayor emisión de cupones, 134 y 119 contra 58 la semana anterior. Premios había.</p>
 
-        <div class="note col">
-          <h4>El número que hay que usar</h4>
-          <p>Para planificar la próxima edición, la referencia a usar es <strong>8 a 11% de retención semanal en un cliente común</strong>, y no el 23 a 44% de las primeras cohortes. Y confirma dónde está el trabajo: hacen falta mecánicas de recurrencia, sean rachas, misiones semanales o niveles. El premio suelto, aun emitido de a 136 por semana, no alcanzó para hacer volver a nadie.</p>
+          <div class="note">
+            <h4>Para presupuestar la próxima</h4>
+            <p>La referencia a usar es <strong>uno de cada diez</strong>, no los cuatro de cada diez del arranque. Y confirma dónde está el trabajo: hacen falta mecánicas que den una razón para volver la semana siguiente, como rachas o misiones semanales. El premio suelto no alcanzó.</p>
+          </div>
         </div>
-
-        <p class="col mono" style="font-size:.72rem;color:var(--ink-mute)">Las celdas marcadas «sin ventana» caen en la semana del 20-jul o después: la ventana de elegibilidad del programa cerró el 19-jul, así que ahí no podía haber compras registradas. Son ceros de calendario, no gente que dejó de comprar.</p>
 
         <h3 class="col">Salud del motor de tickets</h3>
         <div class="grid g2" style="margin:1.2rem 0 1rem">
@@ -546,7 +542,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <div class="note warn col">
           <h4>Qué prueban estos datos y qué no</h4>
           <p><strong>Prueban</strong> que el sistema funciona a escala real y con plata real, con 93,5% de automatización y 84,8% de aprobación. Que la gente se registra en el local, con el ticket en la mano, porque la mediana entre el alta y la primera carga es cero días. Que hay un grupo chico de clientes de altísimo valor. Y que operar todo esto cuesta muy poco.</p>
-          <p><strong>No prueban</strong> que el programa haya <em>causado</em> el mayor gasto, porque faltó un grupo de control. Tampoco dicen cuánto gasta un cliente no registrado, ya que esa venta nunca entró al sistema. Ni permiten hablar de retención más allá de tres semanas para las cohortes de julio.</p>
+          <p><strong>No prueban</strong> que el programa haya <em>causado</em> el mayor gasto, porque faltó un grupo de control. Tampoco dicen cuánto gasta un cliente no registrado, ya que esa venta nunca entró al sistema. Ni permiten medir qué pasó con quienes compraron por primera vez en julio, porque el programa cerró antes de que tuvieran una semana siguiente.</p>
           <p>Quedan <strong>tres salvedades</strong> más. Se excluyó al participante con fraude comprobado, pero no se auditó uno por uno al resto del segmento de alta frecuencia. En 304 tickets la atribución es de grupo y no de sucursal. Y el canje registrado puede estar subcontado, aunque la activación, que es el número realmente flojo, se mide con certeza dentro de la app.</p>
         </div>
 
@@ -835,19 +831,19 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
 
   const WKM = [
-    { l: "8-jun", p: 11, t: 1.8, u: 0.82, pr: 7.9 },
-    { l: "15-jun", p: 28, t: 3.3, u: 1.07, pr: 24.8 },
-    { l: "22-jun", p: 34, t: 3.5, u: 1.47, pr: 56.8 },
-    { l: "29-jun", p: 18, t: 7.4, u: 2.89, pr: 63.8 },
-    { l: "6-jul", p: 9, t: 14.4, u: 3.22, pr: 69.7 },
-    { l: "13-jul", p: 4, t: 22.3, u: 4.25, pr: 37.5 }
+    { l: "8-jun", p: 11, t: 1.8, tc: 2.2, pr: 7.9 },
+    { l: "15-jun", p: 28, t: 3.3, tc: 3.0, pr: 24.8 },
+    { l: "22-jun", p: 34, t: 3.5, tc: 2.4, pr: 56.8 },
+    { l: "29-jun", p: 18, t: 7.4, tc: 2.6, pr: 63.8 },
+    { l: "6-jul", p: 9, t: 14.4, tc: 4.5, pr: 69.7 },
+    { l: "13-jul", p: 4, t: 22.3, tc: 5.2, pr: 37.5 }
   ];
   const perMatch = (id, key, color, dec) => line($("#" + id), WKM.map(w => ({ l: w.l, v: w[key] })), {
     color: color, label: "Intensidad por partido",
-    tick: v => v.toFixed(dec), fmt: v => v.toFixed(dec) + " por partido"
+    tick: v => v.toFixed(dec), fmt: v => v.toFixed(dec)
   });
   perMatch("wkTkMatch", "t", "var(--s1)", 1);
-  perMatch("wkUsMatch", "u", "var(--s3)", 1);
+  perMatch("wkUsMatch", "tc", "var(--s3)", 1);
   perMatch("wkPrMatch", "pr", "var(--s4)", 0);
 
   bars($("#barLift"), [
@@ -929,40 +925,16 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     { l: "Tu ticket fue validado", v: 2.4, c: "var(--s2)", t: "250 envíos" }
   ], { fmt: v => v.toFixed(1) + "%" });
 
-  const COH = [
-    ["8-jun", 9, 3, 18.0, 44, 33, 33],
-    ["15-jun", 26, 6, 9.1, 38, 31, 23],
-    ["22-jun", 37, 1, 2.8, 8, 11, 3],
-    ["29-jun", 38, 0, 1.3, 8, 5, 0],
-    ["6-jul", 14, 0, 1.5, 0, null, null],
-    ["13-jul", 9, 0, 1.0, null, null, null]
-  ];
-  const heatColor = v => {
-    if (v === null) return "transparent";
-    if (v === 0) return "var(--panel-2)";
-    if (v < 10) return "var(--r1)";
-    if (v < 25) return "var(--r2)";
-    if (v < 35) return "var(--r3)";
-    return "var(--r4)";
-  };
-  const cb = $("#tblCohort");
-  COH.forEach(([l, u, hf, prom, a, b, c]) => {
-    const r = el("tr");
-    r.innerHTML = "<td><b>" + l + "</b></td><td class='num'>" + u + "</td>" +
-                  "<td class='num'>" + hf + "</td><td class='num'>" + prom.toFixed(1) + "</td>";
-    [a, b, c].forEach(v => {
-      const td = el("td", "cell");
-      if (v === null) { td.innerHTML = "<span class='dash'>sin ventana</span>"; }
-      else {
-        td.textContent = v + "%";
-        td.style.background = heatColor(v);
-        td.style.color = v >= 25 ? "var(--paper)" : "var(--ink)";
-        td.style.borderRadius = "3px";
-      }
-      r.appendChild(td);
-    });
-    cb.appendChild(r);
-  });
+  bars($("#barVuelta"), [
+    { l: "1ª semana · 9 personas", v: 44, c: "var(--s3)", t: "4 de 9 volvieron" },
+    { l: "2ª semana · 26 personas", v: 38, c: "var(--s3)", t: "10 de 26 volvieron" },
+    { l: "3ª semana · 37 personas", v: 8, c: "var(--s1)", t: "3 de 37 volvieron" },
+    { l: "4ª semana · 38 personas", v: 8, c: "var(--s1)", t: "3 de 38 volvieron" }
+  ], { fmt: v => v + "%" });
+  const lgVuelta = el("div", "legend");
+  lgVuelta.innerHTML = "<span><i style='background:var(--s3)'></i>Semanas del arranque, casi puros entusiastas</span>" +
+                       "<span><i style='background:var(--s1)'></i>Semanas con cliente común</span>";
+  $("#barVuelta").parentNode.appendChild(lgVuelta);
 
   const VEN = [
     ["Sr. Buñuelo Estrella", "exacto", "", 136, "4", 21157, 2877400],
