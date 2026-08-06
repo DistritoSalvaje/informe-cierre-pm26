@@ -388,7 +388,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <div class="panel"><p class="panel-t">Venta identificada</p><p class="panel-s">Millones de COP por semana</p><div class="chart-wrap" id="wkSales"></div></div>
         </div>
 
-
         <h3 class="col">El otro ángulo: intensidad por partido</h3>
         <div class="col">
           <p>Los tres gráficos de arriba miden volumen absoluto, y el volumen absoluto sigue al calendario. Para saber si además hubo desenganche real hay que <strong>mirar la intensidad</strong>: cuánto movió cada fecha y cuánto compró cada persona. Ahí la lectura se da vuelta.</p>
@@ -536,8 +535,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         </div>
         <div class="col">
           <p>El grupo más grande son las 21 sucursales de Sr. Buñuelo que facturan bajo un solo NIT en Bogotá y periferia: 116 tickets de 57 usuarios distintos que no se pueden asignar a una sucursal. Saber qué local rinde es de lo más útil que puede dar un programa así, y esta edición no lo pudo responder con precisión.</p>
-          <p><strong>Un código QR en el local resolvería esta atribución.</strong> Bastaría con que el consumo quede amarrado a la sucursal donde ocurrió, sin depender de que la factura sepa identificarla. Cómo se implemente es una decisión de diseño que este informe no prejuzga.</p>
-        </div>
+          </div>
 
         <div class="note warn col">
           <h4>Qué prueban estos datos y qué no</h4>
@@ -828,7 +826,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     tick: v => v.toFixed(1), fmt: v => "$" + v.toFixed(2) + " M"
   });
 
-
   const WKM = [
     { l: "8-jun", p: 11, t: 1.8, tc: 2.2, pr: 7.9 },
     { l: "15-jun", p: 28, t: 3.3, tc: 3.0, pr: 24.8 },
@@ -872,7 +869,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     r.innerHTML = "<td><b>" + l + "</b></td><td class='num'>" + u + "</td><td class='num'>" + t + "</td><td class='num'>" + cop(g) + "</td><td class='num'>" + pct(p) + "</td>";
     const c = el("td");
     const tr2 = el("div", "bar-track"); const f = el("div", "bar-fill");
-    f.style.width = (p / 52.3 * 100) + "%";
+    f.style.width = p + "%";
     f.style.background = i === 4 ? "var(--s2)" : "var(--s1)";
     tr2.appendChild(f); c.appendChild(tr2); r.appendChild(c);
     tb.appendChild(r);
@@ -922,14 +919,14 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     { l: "Recordatorio (no predijo)", v: 3.4, c: "var(--s2)", t: "2.763 envíos" },
     { l: "Resumen semanal sin actividad", v: 2.9, c: "var(--s2)", t: "239 envíos" },
     { l: "Tu ticket fue validado", v: 2.4, c: "var(--s2)", t: "250 envíos" }
-  ], { fmt: v => v.toFixed(1) + "%" });
+  ], { max: 100, fmt: v => v.toFixed(1) + "%" });
 
   bars($("#barVuelta"), [
     { l: "1ª semana · 9 personas", v: 44, c: "var(--s3)", t: "4 de 9 volvieron" },
     { l: "2ª semana · 26 personas", v: 38, c: "var(--s3)", t: "10 de 26 volvieron" },
     { l: "3ª semana · 37 personas", v: 8, c: "var(--s1)", t: "3 de 37 volvieron" },
     { l: "4ª semana · 38 personas", v: 8, c: "var(--s1)", t: "3 de 38 volvieron" }
-  ], { fmt: v => v + "%" });
+  ], { max: 100, fmt: v => v + "%" });
   const lgVuelta = el("div", "legend");
   lgVuelta.innerHTML = "<span><i style='background:var(--s3)'></i>Semanas del arranque, casi puros entusiastas</span>" +
                        "<span><i style='background:var(--s1)'></i>Semanas con cliente común</span>";
