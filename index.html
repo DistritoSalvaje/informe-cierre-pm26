@@ -330,7 +330,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         </div>
         <div class="col">
           <p>Los tres primeros renglones son fijos y suman US$ 109. El resto es consumo, y la mayor parte se explica por la lectura automática de tickets: cada foto procesada cuesta fracciones de centavo, pero se acumulan. Los avisos push, en cambio, no cuestan nada, y son el canal que más se usó.</p>
-          <p>Dos cosas útiles para presupuestar la próxima. Si la edición no incluye componente deportivo, se caen los US$ 19 de la API de fútbol. Y si se suma el código QR en la caja, buena parte del consumo de lectura automática también desaparece, porque el monto lo aporta el sistema del local en vez de sacarlo de una foto.</p>
+          <p>Un dato útil para presupuestar la próxima: si la edición no incluye componente deportivo, se caen los US$ 19 de la API de fútbol y el costo baja a unos US$ 160 mensuales.</p>
 
           <div class="note">
             <h4>Lo que quedó, más allá de los premios</h4>
@@ -536,7 +536,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         </div>
         <div class="col">
           <p>El grupo más grande son las 21 sucursales de Sr. Buñuelo que facturan bajo un solo NIT en Bogotá y periferia: 116 tickets de 57 usuarios distintos que no se pueden asignar a una sucursal. Saber qué local rinde es de lo más útil que puede dar un programa así, y esta edición no lo pudo responder con precisión.</p>
-          <p><strong>La atribución exacta por sucursal es el único problema que un código QR en la caja resolvería de verdad.</strong> Si el cajero muestra un código con el monto y el cliente lo escanea al pagar, el consumo queda amarrado a esa sucursal sin depender de que la factura la identifique.</p>
+          <p><strong>Un código QR en el local resolvería esta atribución.</strong> Bastaría con que el consumo quede amarrado a la sucursal donde ocurrió, sin depender de que la factura sepa identificarla. Cómo se implemente es una decisión de diseño que este informe no prejuzga.</p>
         </div>
 
         <div class="note warn col">
@@ -576,8 +576,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
           <div class="note">
             <h4>Qué hacer para la próxima</h4>
-            <p><strong>Contra este fraude en particular, el código QR en la caja no alcanza.</strong> Sirve contra el cliente que sube una factura ajena que encontró tirada, porque el consumo queda amarrado a quien escanea. Pero acá el defraudador era el cajero, que es justamente quien genera el código: nada le impide escanearlo él mismo cuando el cliente se va. Mover la superficie de ataque no es cerrarla.</p>
-            <p>Mientras tanto hay dos medidas mucho más baratas. Una es una <strong>alerta automática de patrón raro</strong>: dos ciudades el mismo día, volumen fuera de rango, ticket promedio desviado. La otra es <strong>revisar el primer puesto antes de entregar el premio mayor</strong>, algo que además ya está previsto en los términos.</p>
+            <p>Hay dos medidas concretas y baratas. Una es una <strong>alerta automática de patrón raro</strong>: dos ciudades el mismo día, volumen fuera de rango, ticket promedio desviado. La otra es <strong>revisar el primer puesto antes de entregar el premio mayor</strong>, algo que además ya está previsto en los términos.</p>
           </div>
 
           <div class="note warn">
@@ -639,8 +638,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           </div>
           <div class="imp">
             <div class="imp-top"><span class="imp-id">06</span><span class="pill md">Datos y control</span></div>
-            <div class="imp-t">QR en la caja</div>
-            <div class="imp-d">Da la atribución exacta por sucursal, que este año no se pudo responder en 304 tickets. No resuelve el fraude del cajero, que es quien genera el código, y el ahorro en lectura automática es marginal. Vale por la atribución, no por lo otro.</div>
+            <div class="imp-t">QR en el local</div>
+            <div class="imp-d">Da la atribución exacta por sucursal, que este año no se pudo responder en 304 tickets. Ese es el beneficio que los datos respaldan; lo demás depende de cómo se diseñe.</div>
           </div>
           <div class="imp">
             <div class="imp-top"><span class="imp-id">07</span><span class="pill md">Comunicación</span></div>
