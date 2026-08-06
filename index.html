@@ -46,6 +46,7 @@ body{
 
 /* ---------- estructura del manual ---------- */
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.wrap .wrap{max-width:none;padding:0} /* evita el padding duplicado del wrap anidado */
 .col,.col p,.col ul,.col ol,.note,.callout{max-width:82ch}
 .sheet{
   background:var(--paper);border:var(--key) solid var(--ink);border-radius:10px;
@@ -84,6 +85,7 @@ h1{
   font-family:var(--display);font-weight:900;
   font-size:clamp(1.9rem,5vw,4.5rem);line-height:.9;letter-spacing:-.01em;
   margin:0 0 1rem;text-transform:uppercase;text-wrap:balance;color:var(--paper);
+  overflow-wrap:anywhere;
 }
 h1 em{font-style:normal;color:var(--gold);display:block}
 .lede{font-size:clamp(1rem,1.5vw,1.22rem);line-height:1.5;max-width:48ch;margin:0;color:#DFE9E1}
@@ -139,7 +141,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.88em;background:var(--p
   font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
   padding:.22rem .5rem;border-radius:8px 0 8px 0;
 }
-.tile .v{font-family:var(--display);font-weight:900;font-size:clamp(2rem,4.4vw,2.9rem);line-height:.9;letter-spacing:-.01em}
+.tile .v{font-family:var(--display);font-weight:900;font-size:clamp(2rem,4.4vw,2.9rem);line-height:.9;letter-spacing:-.01em;min-width:0;overflow-wrap:anywhere}
 .tile .v.accent{color:var(--green-2)}
 .tile .v.alert{color:var(--red)}
 .tile .n{font-size:.8rem;color:var(--ink-2);line-height:1.45;margin-top:.3rem}
@@ -151,7 +153,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.88em;background:var(--p
 .panel{background:var(--paper);border:var(--key) solid var(--ink);border-radius:10px;padding:1rem 1.1rem 1.2rem}
 .panel-t{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:1rem;margin:0 0 .1rem;letter-spacing:.01em}
 .panel-s{font-size:.8rem;color:var(--ink-2);margin:0 0 1rem;line-height:1.45}
-.note{border:var(--key) dashed var(--ink);border-radius:10px;padding:1rem 1.1rem;background:var(--paper-2);max-width:82ch;margin:1.6rem 0}
+.note{border:var(--key) dashed var(--ink);border-radius:10px;padding:1rem 1.1rem;background:var(--paper-2);max-width:82ch;margin:1.6rem auto}
 .note h4{color:var(--green-2)}
 .note p:last-child{margin-bottom:0}
 .note.warn{background:#F8E4E1;border-color:var(--red)}
@@ -163,7 +165,7 @@ th,td{text-align:left;padding:.55rem .75rem;border-bottom:1px solid rgba(23,37,2
 thead th{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--paper);font-weight:700;background:var(--ink);position:sticky;top:0}
 tbody tr:last-child td{border-bottom:0}
 tbody tr:nth-child(even){background:var(--paper-2)}
-td.num,th.num{text-align:right}
+td.num,th.num{text-align:right;white-space:nowrap}
 .tick{color:var(--green-2);font-weight:700}
 .dash{color:var(--ink-3)}
 
@@ -196,7 +198,7 @@ svg.chart .dot{stroke:var(--ink);stroke-width:1.5}
 .fn-out{font-size:.8rem;font-weight:600;color:var(--ink-2);flex:1 1 auto;min-width:0}
 .fn-bar b{font-family:var(--display);font-size:1.05rem;letter-spacing:.01em}
 .fn-bar span{font-size:.8rem;font-weight:600;opacity:.92}
-.fn-note{font-size:.8rem;color:var(--ink-2);padding-left:.15rem}
+.fn-note{font-size:.8rem;color:var(--ink-2)}
 
 /* ---------- mapa de calor ---------- */
 .heat td.cell{text-align:center;font-weight:700;padding:.5rem .3rem;font-size:.8rem}
@@ -339,10 +341,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <p>Los tres primeros renglones son fijos y suman US$ 109. El resto es consumo, y la mayor parte se explica por la lectura automática de tickets: cada foto procesada cuesta fracciones de centavo, pero se acumulan. Los avisos push, en cambio, no cuestan nada, y son el canal que más se usó.</p>
           <p>Un dato útil para presupuestar la próxima: si la edición no incluye componente deportivo, se caen los US$ 19 de la API de fútbol y el costo baja a unos US$ 160 mensuales.</p>
 
-          <div class="note">
-            <h4>Lo que quedó, más allá de los premios</h4>
-            <p>Antes de esta acción, un cliente que pagaba en efectivo era anónimo. Hoy hay <strong>534 personas identificadas</strong>, con su historial de consumo, su local habitual y su frecuencia. Ese padrón queda, y se puede volver a activar con o sin un Mundial de por medio.</p>
-          </div>
+        </div>
+
+        <div class="note col">
+        <h4>Lo que quedó, más allá de los premios</h4>
+        <p>Antes de esta acción, un cliente que pagaba en efectivo era anónimo. Hoy hay <strong>534 personas identificadas</strong>, con su historial de consumo, su local habitual y su frecuencia. Ese padrón queda, y se puede volver a activar con o sin un Mundial de por medio.</p>
         </div>
       </section>
 
@@ -353,23 +356,24 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <p>Todo lo que sigue sale de la base de datos de la aplicación, sin retoques. Cuando un número salió flojo lo dejamos igual y lo decimos.</p>
           <p class="mono" style="font-size:.72rem;color:var(--ink-mute)">Operación: 12-jun-2026 → 20-jul-2026 · 5,5 semanas · Distrito Salvaje + Sr. Buñuelo · Bogotá, Medellín, Manizales y Bucaramanga</p>
 
-          <div class="note warn">
-            <h4>Todas las cifras están depuradas</h4>
-            <p>El participante que había quedado primero resultó ser un empleado que cargaba tickets de clientes como propios. Está <strong>excluido por completo de este informe</strong>: sus 96 tickets, $3.377.150 de consumo, 74 predicciones y 3 premios no entran en ninguna cifra, gráfico ni tabla. El detalle del caso está en la <a href="#fraude">sección 03</a>.</p>
-            <p>Por eso la venta identificada que se lee acá es de $12,1 millones y no de $15,4: preferimos el número que refleja clientes reales.</p>
-          </div>
+        </div>
+
+        <div class="note warn col">
+        <h4>Todas las cifras están depuradas</h4>
+        <p>El participante que había quedado primero resultó ser un empleado que cargaba tickets de clientes como propios. Está <strong>excluido por completo de este informe</strong>: sus 96 tickets, $3.377.150 de consumo, 74 predicciones y 3 premios no entran en ninguna cifra, gráfico ni tabla. El detalle del caso está en la <a href="#fraude">sección 03</a>.</p>
+        <p>Por eso la venta identificada que se lee acá es de $12,1 millones y no de $15,4: preferimos el número que refleja clientes reales.</p>
         </div>
 
         <h3 class="col">Los números principales</h3>
         <div class="grid g4" style="margin-bottom:.8rem">
           <div class="tile"><span class="k">Usuarios</span><span class="v">534</span><span class="n">533 ingresaron al menos una vez</span></div>
           <div class="tile"><span class="k">Tickets procesados</span><span class="v">686</span><span class="n">582 aprobados · 84,8% de aprobación</span></div>
-          <div class="tile"><span class="k">Venta identificada</span><span class="v">$12,1 M</span><span class="n">Pesos colombianos, en 5,5 semanas</span></div>
+          <div class="tile"><span class="k">Venta identificada</span><span class="v">$12,1&nbsp;M</span><span class="n">Pesos colombianos, en 5,5 semanas</span></div>
           <div class="tile"><span class="k">Automatización</span><span class="v accent">93,5%</span><span class="n">544 de 582 aprobados sin intervención humana</span></div>
         </div>
         <div class="grid g4">
           <div class="tile"><span class="k">Ticket promedio</span><span class="v">$20.976</span><span class="n">Mediana $17.200</span></div>
-          <div class="tile"><span class="k">Alta → 1er ticket</span><span class="v accent">0 días</span><span class="n">Mediana. Se registran en el local, con el ticket en la mano</span></div>
+          <div class="tile"><span class="k">Alta → 1er ticket</span><span class="v accent">0&nbsp;días</span><span class="n">Mediana. Se registran en el local, con el ticket en la mano</span></div>
           <div class="tile"><span class="k">Predicciones</span><span class="v">4.636</span><span class="n">14,8 por usuario que jugó</span></div>
           <div class="tile"><span class="k">Costo operativo</span><span class="v">US$180</span><span class="n">Por mes, todo incluido</span></div>
         </div>
@@ -522,10 +526,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <p>Las dos primeras semanas parecen mucho mejores, con cuatro de cada diez volviendo, pero es un espejismo: eran semanas chiquitas, de 9 y 26 personas, y ahí adentro estaban <strong>nueve de los diez clientes más intensos de toda la campaña</strong>. Cuando el programa llegó al cliente común, a razón de 37 y 38 compradores nuevos por semana, apareció el uno de cada diez.</p>
           <p>Y no fue por falta de premios: las dos semanas que peor volvieron fueron justamente las de mayor emisión de cupones, 134 y 119 contra 58 la semana anterior. Premios había.</p>
 
-          <div class="note">
-            <h4>Para presupuestar la próxima</h4>
-            <p>La referencia a usar es <strong>uno de cada diez</strong>, no los cuatro de cada diez del arranque. Y confirma dónde está el trabajo: hacen falta mecánicas que den una razón para volver la semana siguiente, como rachas o misiones semanales. El premio suelto no alcanzó.</p>
-          </div>
+        </div>
+
+        <div class="note col">
+        <h4>Para presupuestar la próxima</h4>
+        <p>La referencia a usar es <strong>uno de cada diez</strong>, no los cuatro de cada diez del arranque. Y confirma dónde está el trabajo: hacen falta mecánicas que den una razón para volver la semana siguiente, como rachas o misiones semanales. El premio suelto no alcanzó.</p>
         </div>
 
         <h3 class="col">Salud del motor de tickets</h3>
@@ -608,15 +613,17 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           </ul>
           <p>La información para detectarlo estaba desde el primer día. Lo que faltó fue el panel que la mostrara mientras pasaba.</p>
 
-          <div class="note">
-            <h4>Qué hacer para la próxima</h4>
-            <p>Un <strong>sistema de alertas de actividad sospechosa</strong>. El rastro estaba entero desde el primer día; faltó algo que lo mostrara mientras pasaba. Debería avisar, por ejemplo, cuando alguien registra compras en dos ciudades el mismo día, cuando el volumen de una persona se despega del resto, cuando su ticket promedio se desvía del que tiene ese local, o cuando concentra una porción llamativa de las compras de una sucursal.</p>
-          </div>
+        </div>
 
-          <div class="note warn">
-            <h4>Y el lado positivo</h4>
-            <p>El fraude se detectó y se pudo probar con datos <strong>antes de entregar la moto</strong>. La cláusula que lo contemplaba estaba escrita, el rastro quedó registrado y el premio terminó donde correspondía. Ningún sistema vuelve el fraude imposible. Lo que se le puede pedir es que no le salga gratis, y acá no le salió.</p>
-          </div>
+        <div class="note col">
+        <h4>Qué hacer para la próxima</h4>
+        <p>Un <strong>sistema de alertas de actividad sospechosa</strong>. El rastro estaba entero desde el primer día; faltó algo que lo mostrara mientras pasaba. Debería avisar, por ejemplo, cuando alguien registra compras en dos ciudades el mismo día, cuando el volumen de una persona se despega del resto, cuando su ticket promedio se desvía del que tiene ese local, o cuando concentra una porción llamativa de las compras de una sucursal.</p>
+        </div>
+
+
+        <div class="note warn col">
+        <h4>Y el lado positivo</h4>
+        <p>El fraude se detectó y se pudo probar con datos <strong>antes de entregar la moto</strong>. La cláusula que lo contemplaba estaba escrita, el rastro quedó registrado y el premio terminó donde correspondía. Ningún sistema vuelve el fraude imposible. Lo que se le puede pedir es que no le salga gratis, y acá no le salió.</p>
         </div>
       </section>
 
@@ -711,11 +718,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           </div>
         </div>
 
-        <div class="col">
-          <div class="note">
-            <h4>En una línea</h4>
-            <p>La parte difícil funcionó: leer una factura, verificarla y darle valor a quien la subió, sin fricción y sin costo relevante. Lo que quedó pendiente es <strong>el otro lado del circuito</strong>, cerrar la vuelta y darle a la gente razones para volver la semana siguiente. Eso es diseño de mecánica, no tecnología, y es donde apuntan las nueve recomendaciones.</p>
-          </div>
+
+        <div class="note col">
+        <h4>En una línea</h4>
+        <p>La parte difícil funcionó: leer una factura, verificarla y darle valor a quien la subió, sin fricción y sin costo relevante. Lo que quedó pendiente es <strong>el otro lado del circuito</strong>, cerrar la vuelta y darle a la gente razones para volver la semana siguiente. Eso es diseño de mecánica, no tecnología, y es donde apuntan las nueve recomendaciones.</p>
         </div>
       </section>
 
@@ -1019,6 +1025,100 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       "<td class='num'>" + cop(prom) + "</td><td class='num'>" + cop(venta) + "</td>"));
   });
 })();
+
+/* ---------- encaje de la tipografía display ----------
+   Versus Black es una cara ancha: a los tamaños del clamp, cadenas como
+   "La revisión" o "MUNDIALISTA" no entran en su caja y se cortaban.
+   Acá se mide el ancho real de cada pieza y se baja el cuerpo lo justo
+   para que entre, en bloque, así todas las fichas de una misma fila
+   comparten tamaño y siguen alineadas. */
+(function () {
+  "use strict";
+
+  const lineWidth = node => {
+    const r = document.createRange();
+    r.selectNodeContents(node);
+    let w = 0;
+    for (const rect of r.getClientRects()) w = Math.max(w, rect.width);
+    return w;
+  };
+
+  function fitGroup(nodes) {
+    // se mide con el corte de palabra desactivado: interesa el ancho real
+    // de la palabra más larga, no el que resulta de partirla al medio
+    nodes.forEach(n => { n.style.fontSize = ""; n.style.overflowWrap = "normal"; });
+    const base = parseFloat(getComputedStyle(nodes[0]).fontSize);
+    if (!base) { nodes.forEach(n => { n.style.overflowWrap = ""; }); return; }
+    let size = base;
+    for (let pass = 0; pass < 8; pass++) {
+      let k = 1;
+      nodes.forEach(n => {
+        const avail = n.clientWidth;
+        if (!avail) return;
+        const w = lineWidth(n);
+        if (w > avail) k = Math.min(k, avail / w);
+      });
+      if (k > 0.995) break;
+      size = Math.max(size * k * 0.99, base * 0.45);
+      nodes.forEach(n => { n.style.fontSize = size.toFixed(2) + "px"; });
+    }
+    nodes.forEach(n => { n.style.overflowWrap = ""; });
+  }
+
+  // misma altura de encabezado en toda la fila: si una tarjeta usa dos
+  // renglones de título, lo que va abajo arranca a la misma altura en todas
+  const EQ = [".tile .v", ".panel-t", ".panel-s", ".imp-t", ".concl-t"];
+  function equalize(scope) {
+    EQ.forEach(sel => {
+      const nodes = Array.prototype.slice.call(scope.querySelectorAll(sel));
+      if (nodes.length < 2) return;
+      nodes.forEach(n => { n.style.minHeight = ""; });
+      const rows = new Map(); // se empareja sólo dentro de cada fila de la grilla
+      nodes.forEach(n => {
+        const key = Math.round((n.getBoundingClientRect().top + window.scrollY) / 4);
+        if (!rows.has(key)) rows.set(key, []);
+        rows.get(key).push(n);
+      });
+      rows.forEach(group => {
+        if (group.length < 2) return;
+        let tallest = 0;
+        group.forEach(n => { tallest = Math.max(tallest, n.getBoundingClientRect().height); });
+        if (tallest) group.forEach(n => { n.style.minHeight = Math.ceil(tallest) + "px"; });
+      });
+    });
+  }
+
+  function collect() {
+    const groups = [];
+    let open = null;
+    document.querySelectorAll(".grid").forEach(grid => {
+      const vs = Array.prototype.slice.call(grid.querySelectorAll(".tile .v"));
+      if (!vs.length) { open = null; return; }
+      // dos grillas pegadas (sin título en el medio) se leen como un solo bloque
+      if (open && open.grid === grid.previousElementSibling) {
+        open.nodes = open.nodes.concat(vs);
+        open.grid = grid;
+      } else {
+        open = { grid: grid, nodes: vs };
+        groups.push(open);
+      }
+    });
+    const single = groups.map(g => g.nodes);
+    document.querySelectorAll("h1, .imp-t, .concl-t").forEach(n => single.push([n]));
+    return single;
+  }
+
+  let pending;
+  const run = () => {
+    collect().forEach(fitGroup);
+    document.querySelectorAll(".grid").forEach(equalize);
+  };
+
+  run();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(run);
+  addEventListener("resize", () => { clearTimeout(pending); pending = setTimeout(run, 120); });
+})();
 </script>
+
 </body>
 </html>
