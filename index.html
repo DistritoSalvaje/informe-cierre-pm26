@@ -230,6 +230,8 @@ svg.chart .dot{stroke:var(--ink);stroke-width:1.5}
 .imp-d{font-size:.8rem;color:var(--ink-2);line-height:1.5}
 
 /* ---------- flechas guía ---------- */
+.concl-t{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(1.35rem,2.6vw,2rem);line-height:1;letter-spacing:.01em;margin:0 0 1rem;color:var(--ink)}
+.flood .concl-t{color:var(--gold)}
 .arrow{display:block;margin:.2rem auto;color:var(--red)}
 .hide{display:none!important}
 @media(max-width:560px){.top-t{font-size:.8rem}.jump{max-width:10rem;font-size:.68rem}.bar-row{grid-template-columns:minmax(4.5rem,7.5rem) 1fr auto;gap:.45rem}.bar-row .lb{font-size:.66rem}.bar-row .vl{font-size:.78rem;min-width:3.6rem}.step-head{gap:.6rem}}
@@ -650,7 +652,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
         <div class="grid g2" style="margin:1.4rem 0 1.4rem">
           <div class="sheet flood">
-            <h4>Lo que salió bien</h4>
+            <p class="concl-t">Lo que salió bien</p>
             <ul>
               <li><strong>El sistema funcionó solo.</strong> 686 tickets procesados con 93,5% de automatización y 84,8% de aprobación. Apenas 38 necesitaron que alguien los mirara.</li>
               <li><strong>$12,1 millones de consumo dejaron de ser anónimos.</strong> Antes, quien pagaba en efectivo no existía para el negocio.</li>
@@ -663,12 +665,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           </div>
 
           <div class="sheet">
-            <h4>Oportunidades de mejora</h4>
+            <p class="concl-t">Oportunidades de mejora</p>
             <ul>
-              <li><strong>El premio no llega al local.</strong> De 360 cupones ganados, 49 se activaron y 9 se canjearon. Es el agujero más grande y el más barato de tapar.</li>
+              <li><strong>El premio no llega al local.</strong> De 360 cupones ganados, 49 se activaron y 9 se canjearon. Es el agujero más grande y el más simple de resolver.</li>
               <li><strong>El consumo nunca disparó un premio.</strong> Los cupones se ganaban acertando pronósticos; las condiciones atadas a compras no se activaron ni una vez. El programa premiaba jugar, no comprar.</li>
-              <li><strong>La gente no vuelve.</strong> De cada diez que compran por primera vez, una vuelve la semana siguiente.</li>
-              <li><strong>El programa no movió al medio.</strong> 86 personas compraron una sola vez y no volvieron, mientras diez concentraron el 52% de la venta.</li>
+              <li><strong>La gente no vuelve.</strong> De cada diez que compran por primera vez, una vuelve la semana siguiente. Parte se explica por visitantes ocasionales, que pasan una vez y no son clientes del barrio. Pero también falta trabajar la difusión dentro del local, con material POP que cuente la campaña ahí donde la persona está comprando.</li>
               <li><strong>Solo uno de cada cuatro registrados llegó a subir un ticket.</strong> Se pierde el 69% entre completar el alta y la primera carga.</li>
               <li><strong>No sabemos qué local rinde.</strong> En 304 tickets la atribución quedó a nivel de grupo y no de sucursal.</li>
               <li><strong>Todo dependía del calendario del Mundial.</strong> Sin partidos no había premios posibles, y las últimas semanas se apagaron solas.</li>
