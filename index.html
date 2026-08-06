@@ -187,7 +187,10 @@ svg.chart .dot{stroke:var(--ink);stroke-width:1.5}
 
 /* ---------- embudo ---------- */
 .funnel{display:flex;flex-direction:column;gap:3px}
-.fn-bar{height:2.3rem;border-radius:5px;display:flex;align-items:center;padding:0 .7rem;gap:.6rem;border:var(--key) solid var(--ink)}
+.fn-row{display:flex;align-items:center;gap:.55rem}
+.fn-bar{height:2.3rem;border-radius:5px;display:flex;align-items:center;padding:0 .7rem;gap:.6rem;border:var(--key) solid var(--ink);overflow:hidden;min-width:0}
+.fn-bar b,.fn-bar span{white-space:nowrap}
+.fn-out{font-size:.74rem;font-weight:600;color:var(--ink-2);white-space:nowrap}
 .fn-bar b{font-family:var(--display);font-size:1.05rem;letter-spacing:.01em}
 .fn-bar span{font-size:.72rem;font-weight:600;opacity:.92}
 .fn-note{font-size:.7rem;color:var(--ink-2);padding-left:.15rem}
@@ -377,7 +380,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         </div>
 
         <h3 class="col">La operación, semana a semana</h3>
-        <p class="col">Tres medidas con escalas distintas, en tres gráficos separados. La curva de compradores cae a partir de la semana del 6 de julio, y el motivo es el calendario: <strong>se acabaron los partidos</strong>. El Mundial pasa de 34 partidos en la semana del 22 de junio a 9 en la del 6 de julio y 4 en la última. Como las condiciones de premio estaban atadas a «consumo durante un partido», menos partidos son menos ventanas para ganar. La emisión de cupones cae en paralelo, de 119 por semana a 29 y a 10, pero eso es otra consecuencia del mismo calendario, no la causa.</p>
+        <p class="col">Tres medidas con escalas distintas, en tres gráficos separados. La curva de compradores cae a partir de la semana del 6 de julio, y el motivo es el calendario: <strong>se acabaron los partidos</strong>. El Mundial pasa de 34 partidos en la semana del 22 de junio a 9 en la del 6 de julio y 4 en la última. Y los premios se ganaban acertando pronósticos, que se evalúan al terminar cada partido: menos partidos son, literalmente, menos premios posibles. La emisión de cupones cae en paralelo, de 119 por semana a 29 y a 10, pero eso es otra consecuencia del mismo calendario, no la causa.</p>
 
         <div class="grid g3" style="margin:1.2rem 0 1.6rem">
           <div class="panel"><p class="panel-t">Tickets aprobados</p><p class="panel-s">Por semana</p><div class="chart-wrap" id="wkTickets"></div></div>
@@ -391,10 +394,14 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <p>Los tres gráficos de arriba miden volumen absoluto, y el volumen absoluto sigue al calendario. Para saber si además hubo desenganche real hay que <strong>dividir por la cantidad de partidos de cada semana</strong>. Ahí la lectura se da vuelta.</p>
         </div>
 
+<div class="col">
+          <p class="fn-note" style="font-size:.78rem;margin:-.4rem 0 1.2rem">Los tres son cocientes de semana, no atribuciones por partido: el numerador es la actividad de toda la semana y el divisor, los partidos jugados en ella. Sirven para comparar semanas con distinta cantidad de fechas, no para decir cuánta gente consumió durante cada partido.</p>
+        </div>
+
         <div class="grid g3" style="margin:1.2rem 0 1.4rem">
-          <div class="panel"><p class="panel-t">Tickets por partido</p><p class="panel-s">Tickets aprobados dividido partidos de esa semana</p><div class="chart-wrap" id="wkTkMatch"></div></div>
-          <div class="panel"><p class="panel-t">Compradores por partido</p><p class="panel-s">Personas distintas que compraron, por partido</p><div class="chart-wrap" id="wkUsMatch"></div></div>
-          <div class="panel"><p class="panel-t">Predicciones por partido</p><p class="panel-s">Pronósticos recibidos por cada partido jugado</p><div class="chart-wrap" id="wkPrMatch"></div></div>
+          <div class="panel"><p class="panel-t">Tickets por partido</p><p class="panel-s">Tickets aprobados de la semana dividido partidos de esa semana</p><div class="chart-wrap" id="wkTkMatch"></div></div>
+          <div class="panel"><p class="panel-t">Compradores por partido</p><p class="panel-s">Compradores distintos de la semana dividido partidos de esa semana</p><div class="chart-wrap" id="wkUsMatch"></div></div>
+          <div class="panel"><p class="panel-t">Predicciones por partido</p><p class="panel-s">Pronósticos recibidos dividido partidos de esa semana</p><div class="chart-wrap" id="wkPrMatch"></div></div>
         </div>
 
         <div class="col">
@@ -461,7 +468,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
         <div class="note col">
           <h4>Qué se deduce de esos dos gráficos</h4>
-          <p>Los dos gráficos apuntan al mismo lugar: el circuito se corta en la vuelta. Faltan dos cosas. Una es <strong>mostrar el umbral</strong>, algo tan simple como "te faltan $12.000 para el próximo premio", con la barra calculada sobre el ticket promedio real de ese local. La otra es que <strong>canjear sea fácil</strong>: link corto por WhatsApp y un cajero que pueda escanear el código desde su celular. Son las recomendaciones 1 y 2.</p>
+          <p><strong>Antes de eso, algo de fondo: el consumo nunca disparó un premio.</strong> De las siete condiciones cargadas, las dos que repartieron los cupones se ganaban <strong>acertando pronósticos</strong>. Las cuatro atadas a consumo (buñuelo relleno gratis, 30%, 10%, 2x1) no se activaron ni una sola vez, y la única de ese tipo que registró algo se llamaba «Test de emails». Subir un ticket sumaba puntos, pero no daba premios: el programa premiaba jugar, no comprar.</p>
+            <p>Los dos gráficos apuntan al mismo lugar: el circuito se corta en la vuelta. Faltan dos cosas. Una es <strong>mostrar el umbral</strong>, algo tan simple como "te faltan $12.000 para el próximo premio", con la barra calculada sobre el ticket promedio real de ese local. La otra es que <strong>canjear sea fácil</strong>: link corto por WhatsApp y un cajero que pueda escanear el código desde su celular. Son las recomendaciones 1 y 2.</p>
         </div>
 
         <h3 class="col">Retención por cohorte</h3>
@@ -721,16 +729,31 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   function funnel(node, steps, ramp) {
     const max = steps[0].v;
     node.innerHTML = "";
+    const filas = [];
     steps.forEach((s, i) => {
-      const b = el("div", "fn-bar");
       const slot = ramp[Math.min(i, ramp.length - 1)];
-      b.style.width = Math.max(14, (s.v / max) * 100) + "%";
+      const fila = el("div", "fn-row");
+      const b = el("div", "fn-bar");
+      b.style.flex = "0 0 " + Math.max(12, (s.v / max) * 100) + "%";
       b.style.background = "var(--" + slot + ")";
       b.style.color = "var(--on-" + slot + ")";
-      b.innerHTML = "<b>" + s.v.toLocaleString("es-CO") + "</b><span>" + s.l + "</span>";
-      node.appendChild(b);
+      const num = el("b", null, s.v.toLocaleString("es-CO"));
+      const dentro = el("span", null, s.l);
+      b.appendChild(num); b.appendChild(dentro);
+      const fuera = el("span", "fn-out", s.l);
+      fila.appendChild(b); fila.appendChild(fuera);
+      node.appendChild(fila);
       node.appendChild(el("div", "fn-note", s.n || (pct((s.v / max) * 100) + " del inicio")));
+      filas.push({ b: b, dentro: dentro, fuera: fuera });
     });
+    // si la etiqueta no entra en la barra, se dibuja afuera
+    const acomodar = () => filas.forEach(f => {
+      f.dentro.hidden = false; f.fuera.hidden = true;
+      if (f.b.scrollWidth > f.b.clientWidth + 1) { f.dentro.hidden = true; f.fuera.hidden = false; }
+    });
+    acomodar();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(acomodar);
+    let t; addEventListener("resize", () => { clearTimeout(t); t = setTimeout(acomodar, 120); });
   }
 
   /* ---------- serie temporal ---------- */
