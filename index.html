@@ -190,7 +190,7 @@ svg.chart .dot{stroke:var(--ink);stroke-width:1.5}
 .fn-row{display:flex;align-items:center;gap:.55rem}
 .fn-bar{height:2.3rem;border-radius:5px;display:flex;align-items:center;padding:0 .7rem;gap:.6rem;border:var(--key) solid var(--ink);overflow:hidden;min-width:0}
 .fn-bar b,.fn-bar span{white-space:nowrap}
-.fn-out{font-size:.74rem;font-weight:600;color:var(--ink-2);white-space:nowrap}
+.fn-out{font-size:.74rem;font-weight:600;color:var(--ink-2);flex:1 1 auto;min-width:0}
 .fn-bar b{font-family:var(--display);font-size:1.05rem;letter-spacing:.01em}
 .fn-bar span{font-size:.72rem;font-weight:600;opacity:.92}
 .fn-note{font-size:.7rem;color:var(--ink-2);padding-left:.15rem}
@@ -641,6 +641,49 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         </div>
       </section>
 
+      <!-- ================= CONCLUSIONES ================= -->
+      <section class="step" id="conclusiones">
+        <div class="step-head"><div class="step-no">5</div><div><h2>Conclusiones</h2></div></div>
+        <div class="col">
+          <p>El balance de la campaña, separado en lo que salió bien y lo que hay para trabajar. Cada punto remite a un número que está en las páginas anteriores.</p>
+        </div>
+
+        <div class="grid g2" style="margin:1.4rem 0 1.4rem">
+          <div class="sheet flood">
+            <h4>Lo que salió bien</h4>
+            <ul>
+              <li><strong>El sistema funcionó solo.</strong> 686 tickets procesados con 93,5% de automatización y 84,8% de aprobación. Apenas 38 necesitaron que alguien los mirara.</li>
+              <li><strong>$12,1 millones de consumo dejaron de ser anónimos.</strong> Antes, quien pagaba en efectivo no existía para el negocio.</li>
+              <li><strong>Quedan 534 personas identificadas</strong>, con su historial, su local habitual y su frecuencia. Ese padrón sobrevive a la campaña y se puede volver a activar.</li>
+              <li><strong>Registrarse no fue una barrera.</strong> La mediana entre el alta y el primer ticket fue de cero días: la gente se anotaba parada en el local.</li>
+              <li><strong>El mecanismo no cansó a nadie.</strong> Cada partido movía más al final que al principio: de 1,8 a 22,3 tickets por fecha.</li>
+              <li><strong>El fraude se detectó y se probó con datos antes de entregar la moto.</strong> El premio terminó donde correspondía.</li>
+              <li><strong>Costó poco.</strong> US$ 180 al mes para operar 38 locales y dos marcas.</li>
+            </ul>
+          </div>
+
+          <div class="sheet">
+            <h4>Oportunidades de mejora</h4>
+            <ul>
+              <li><strong>El premio no llega al local.</strong> De 360 cupones ganados, 49 se activaron y 9 se canjearon. Es el agujero más grande y el más barato de tapar.</li>
+              <li><strong>El consumo nunca disparó un premio.</strong> Los cupones se ganaban acertando pronósticos; las condiciones atadas a compras no se activaron ni una vez. El programa premiaba jugar, no comprar.</li>
+              <li><strong>La gente no vuelve.</strong> De cada diez que compran por primera vez, una vuelve la semana siguiente.</li>
+              <li><strong>El programa no movió al medio.</strong> 86 personas compraron una sola vez y no volvieron, mientras diez concentraron el 52% de la venta.</li>
+              <li><strong>Solo uno de cada cuatro registrados llegó a subir un ticket.</strong> Se pierde el 69% entre completar el alta y la primera carga.</li>
+              <li><strong>No sabemos qué local rinde.</strong> En 304 tickets la atribución quedó a nivel de grupo y no de sucursal.</li>
+              <li><strong>Todo dependía del calendario del Mundial.</strong> Sin partidos no había premios posibles, y las últimas semanas se apagaron solas.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="note">
+            <h4>En una línea</h4>
+            <p>La parte difícil funcionó: leer una factura, verificarla y darle valor a quien la subió, sin fricción y sin costo relevante. Lo que quedó pendiente es <strong>el otro lado del circuito</strong>, cerrar la vuelta y darle a la gente razones para volver la semana siguiente. Eso es diseño de mecánica, no tecnología, y es donde apuntan las nueve recomendaciones.</p>
+          </div>
+        </div>
+      </section>
+
       <footer>
         Polla Mundialista 2026 · Informe de cierre de campaña<br>
         Distrito Salvaje S.A.S · Sr. Buñuelo Cv SAS<br>
@@ -664,7 +707,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     ["accion", "01", "La acción"],
     ["caso", "02", "Los resultados"],
     ["fraude", "03", "El fraude detectado"],
-    ["recomendaciones", "04", "Próxima edición"]
+    ["recomendaciones", "04", "Próxima edición"],
+    ["conclusiones", "05", "Conclusiones"]
   ];
   const jump = $("#jump");
   jump.appendChild(el("option", null, "Ir al paso…"));
